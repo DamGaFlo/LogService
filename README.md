@@ -110,3 +110,11 @@ Inpunt del Cliente js desplegado
 respuesta donde vemos las cadenas ingresadas
 
 ![aws](/img/labAws.png)
+
+
+## Autor
+[Johan Damian Garrido Florez](https://github.com/DamGaFlo)
+## Derechos de Autor
+**©** _Johan Damian Garrido Florez, Escuela Colombiana de Ingeniería Julio Garavito._
+## Licencia
+Licencia bajo  GNU General Public License
