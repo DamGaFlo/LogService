@@ -30,9 +30,9 @@ public class ServicePersistenceImpl implements ServicePersistence {
 
     public ServicePersistenceImpl() {
         MongoClient mongo = crearConexion();
-
         db = mongo.getDB("data");
         System.out.println(db.getMongo());
+        
         coleccion = db.getCollection("strings");
         System.out.println("Conexion realizada");
 
@@ -40,7 +40,7 @@ public class ServicePersistenceImpl implements ServicePersistence {
 
     private static MongoClient crearConexion() {
         MongoClient mongo = null;
-        mongo = new MongoClient("localhost", 27017);
+        mongo = new MongoClient("db", 27017);
 
         return mongo;
     }

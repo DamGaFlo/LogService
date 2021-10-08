@@ -16,6 +16,8 @@ import spark.Response;
 import static spark.Spark.get;
 import static spark.Spark.post;
 import static spark.Spark.port;
+import static spark.Spark.redirect;
+import static spark.Spark.staticFiles;
 
 /**
  *
@@ -29,9 +31,10 @@ public class App {
 
     public static void main(String... args) {
         Gson gson = new Gson();
+        staticFiles.location("/public_html");
         port(getPort());
         get("hello", (req, res) -> "Hola grupo TCON");
-        get("/", (req, res) -> "Hola grupo TCON");
+        redirect.get("/","/index.html");
         get("/cadenas", "application/json", (req, res) -> (getLimitData(req, res)),gson::toJson);
         post("/cadena",((req, res) -> insertar(req,res)));
         
@@ -40,6 +43,7 @@ public class App {
     }
 
     private static Set<String> getLimitData(Request req, Response res) {
+        System.out.println(service.getLimitData(10));
 
         return service.getLimitData(10);
     }

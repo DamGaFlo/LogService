@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <form id="form">
+        <label> ingrese su cadena</label>
+        <input type="text" name="string" placeholder="cadena">
+        <button>Enviar</button>
+    </form>
+    <div>
+        <p id="ans"></p>
+    </div>
+    <script>
+
+        const $ans = document.querySelector('#ans')
+        function renderAns(data) {
+            const ans = data.replace(/\\/g, "")
+            $ans.textContent = ans
+
+        }
+
+
+        const $form = document.querySelector('#form')
+        $form.addEventListener('submit', (event) => {
+            event.preventDefault()
+            const formData = new FormData(event.currentTarget)
+            fetch('http://ec2-34-230-42-127.compute-1.amazonaws.com:34000/cadena', {
+                method: 'POST',
+                body: JSON.stringify({
+                    string: formData.get("string")
+                })
+            }).then(
+
+                fetch('http://ec2-34-230-42-127.compute-1.amazonaws.com:34000/cadenas')
+                    .then(response => response.text())
+                    .then(data => {
+                        console.log(data)
+                        renderAns(data)
+                    }))
+        })
+    </script>
+
+</body>
+
+</html>
